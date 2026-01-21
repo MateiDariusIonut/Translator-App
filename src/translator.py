@@ -11,37 +11,25 @@ tokenizer = M2M100Tokenizer.from_pretrained(model_name)
 model = M2M100ForConditionalGeneration.from_pretrained(model_name)
 
 # Funcția care realizează traducerea propriu-zisă
-def translate(text, input, output):
+def translate(text:str, input:str, output:str):
 
-    if input == "RO":
-        src = 'ro'
-    elif input == "EN":
-        src = 'en'
-    elif input == "DE":
-        src = 'de'
-    elif input == "ES":
-        src = 'es'
-    elif input == "FR":
-        src = 'fr'
-    elif input == "IT":
-        src = 'it'
-    else:
-        raise ValueError("Invalid input.")
+    langs_map = {'Română': 'ro',
+                 'Engleză': 'en',
+                 'Germană': 'de',
+                 'Spaniolă': 'es',
+                 'Franceză': 'fr',
+                 'Italiană': 'it',
+                 'Japoneză': 'ja',
+                 'Greacă': 'el',
+                 'Norvegiană': 'no',
+                 'Suedeză': 'se',
+                 'Olandeză': 'ol'}
+    try:
+        input, output = langs_map[input], langs_map[output]
+    except KeyError:
+        raise ValueError("Limba de intrare sau ieșire nu se află în lista limbilor valide.")
 
-    if output == "RO":
-        tgt = 'ro'
-    elif output == "EN":
-        tgt = 'en'
-    elif output == "DE":
-        tgt = 'de'
-    elif output == "ES":
-        tgt = 'es'
-    elif output == "FR":
-        tgt = 'fr'
-    elif output == "IT":
-        tgt = 'it'
-    else:
-        raise ValueError("Invalid output.")
+    src, tgt = input.lower(), output.lower()
 
     if tgt == src:
         return text
@@ -58,7 +46,7 @@ def translate(text, input, output):
         translated_tokens = model.generate(
             **inputs,
             forced_bos_token_id=tokenizer.get_lang_id(tgt),  # forțăm limba țintă
-            num_beams=5,  # Beam search pentru calitate mai bună
+            num_beams=10,  # Beam search pentru calitate mai bună
             max_length=1024  # Lungimea maximă a rezultatului
         )
 
