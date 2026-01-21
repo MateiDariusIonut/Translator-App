@@ -46,7 +46,7 @@ def translate(text:str, input:str, output:str):
         translated_tokens = model.generate(
             **inputs,
             forced_bos_token_id=tokenizer.get_lang_id(tgt),  # forțăm limba țintă
-            num_beams=10,  # Beam search pentru calitate mai bună
+            num_beams=5,  # Beam search pentru calitate mai bună
             max_length=1024  # Lungimea maximă a rezultatului
         )
 
