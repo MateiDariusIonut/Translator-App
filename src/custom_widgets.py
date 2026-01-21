@@ -79,12 +79,11 @@ class ImprovedComboBox(tb.Combobox):
         self.bind('<KeyRelease>', self.search)
 
     def search(self, event):
-        searchValue = event.widget.get()
-        goodValues = []
+        searchValue = self.get()
         if searchValue == '' or searchValue == " ":
             goodValues = self.values
         else:
-            goodValues = [name for name in self['values'] if searchValue.lower() in name.lower()]
+            goodValues = [name for name in self.values if searchValue.lower() in name.lower()]
 
 
         self['values'] = goodValues

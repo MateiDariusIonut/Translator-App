@@ -47,6 +47,9 @@ def swap_lang(combobox1, combobox2):
     combobox1.set(l2)
     combobox2.set(l1)
 
+    combobox1.search(None)
+    combobox2.search(None)
+
 def run_gui():
 
     # Creăm fereastra principală a aplicației
