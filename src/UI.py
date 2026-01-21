@@ -69,7 +69,7 @@ def run_gui():
 
 
     # Lista direcțiilor de traducere disponibile
-    directions = ["Română", "Engleză", "Germană", "Spaniolă", "Franceză", "Italiană", 'Japoneză', 'Greacă', 'Suedeză', 'Norvegiană', 'Japoneză']
+    directions = ["Română", "Engleză", "Germană", "Spaniolă", "Franceză", "Italiană", 'Japoneză', 'Greacă', 'Suedeză', 'Norvegiană']
 
     langauge_choice_frame = tb.Frame(middle_frame)
     langauge_choice_frame.pack(padx=5, pady=5)
